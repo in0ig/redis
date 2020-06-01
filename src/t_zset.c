@@ -133,8 +133,8 @@ zskiplistNode *zslInsert(zskiplist *zsl, double score, sds ele) {
     zskiplistNode *update[ZSKIPLIST_MAXLEVEL], *x;
     unsigned int rank[ZSKIPLIST_MAXLEVEL];
     int i, level;
-
-    serverAssert(!isnan(score));
+    /* 断言判断，如果后面你的是真执行空操作，如果为假，打印关键信息 */
+    serverAssert(!isnan(score)); /*isnan函数用于检测其参数是否是非数字 */
     x = zsl->header;
     for (i = zsl->level-1; i >= 0; i--) {
         /* store rank that is crossed to reach the insert position */
